@@ -1,25 +1,28 @@
 
-// importar o modulo do express
-const express = require('express')
+// Importar o módulo do Express
+const express = require('express');
 
-//importar o arquivo das notas do usuario
-const userRoutes = require('../api-usuario/src/routes/useRoutes')
+//Importar o arquivo das rotas do usuário
+const userRoutes = require('./src/routes/userRoutes');
 
-// Criar uma aplicação express
-const app = express()
+//Criar uma aplicação express
+const app = express();
 
-//definir a porta em que o sarvidor irá funcionar (execultar)
-const porta = 8000
+//Definir para que o express analise JSON no corpo das requisições
+app.use(express.json());
 
-//rota de teste API
-app.get('/api',(req, res) => {
-    res.send('API de funcionarios funcionando')
-})
+//Definir a porta em que o servidor irá funcionar (escutar)
+const porta = 8000;
 
-//configurando as rotas de ususarios 
+//Rota de Teste da API
+app.get('/api', (req, res) => {
+    res.send("API de Usuários está Funcionando")
+});
+
+//Configurando as rotas de usuário
 app.use('/api/users', userRoutes)
 
-//iniciar o servidor 
+//Iniciar o servidor
 app.listen(porta, () => {
-    console.log(`servidor rodando em https://localhost:'${porta}`);
-})
+    console.log(`Servidor rodando em http://localhost:${porta}`)
+});

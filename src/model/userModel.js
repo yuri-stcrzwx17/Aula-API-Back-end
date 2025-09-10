@@ -1,41 +1,54 @@
+// Simulação de um banco de dados em memória
+let users = [
+    {id: 1, name: 'Alice', email: 'alice@gmail.com'},
+    {id: 2, name: 'Roberto', email: 'roberto@gmail.com'},
+    {id: 3, name: 'Josué', email: 'josue@gmail.com'}
+];
 
+//Funções que irão simular integração com o banco de dados
 
-//simulação de um banco de dados em memoria
-let users =[
-    {id: 1, name: 'Alice', email:'Alice@gmail.com' },
-    {id: 2, name: 'roberto', email: 'roberto@gmail.com' },
-    {id: 3, name: 'jose', email: 'jose@gmail.com' }
-]
-
-//Funções que irão simular integração com o bando de dados 
-
-//função que lista tds os usuarios (comando Select)
+//Função que lista todos os usuários (Comando Select)
 const findAll = () => {
-    return users
-}
+    return users;
+};
 
-//
+//Função que busca um usuário por ID (Comando Select * from usuario where id = 1)
 const findById = (id) => {
-    return users.find(user => user.id === id)
-}
+    return users.find(user => user.id === id);
+};
 
-//função para add um nv useuario
-const create = () => {
-    //geramdo o id do proximo item (usuario)
-    const newId = users.length > 0 ? users[users.length - 1].id + 1 : 1
+//Função para adicionar um novo usuário (Comando Insert)
+const create = (newUser) => {
+    //Gerando o id do próximo item (usuário)
+    const newId = users.length > 0 ? users[users.length - 1].id + 1 : 1;
 
-    // criando um nv usuario com id novo
-    const userWithId = {id: newId, ...newUser}
+    //Criando um novo usuário com o id novo
+    const userWithId = {id: newId, ...newUser};
 
-    //adicionar o userWithId no array user 
-    users.push(userWithId)
+    //Adicionar o userWithId no array users
+    users.push(userWithId);
 
-    //retornar o usuario cadastro
-    return userWithId
+    //Retornar o usuário cadastrado
+    return userWithId;
+};
+
+//Função para deletar um usuário
+const deleteUser = (id) => {
+
+    //Descobrir o index do elemento para excluir
+    const index = users.findIndex(user => user.id === id);
+
+    if(index !== -1){
+        const [deleteUser] = users.splice(index,1);
+        return deleteUser
+    }
+
+    return null;
 }
 
 module.exports = {
     findAll,
     findById,
-    create
+    create,
+    deleteUser
 }
