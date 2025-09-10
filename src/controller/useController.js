@@ -2,7 +2,6 @@
 
 //1º Passo - importar o userModel
 const userModel = require('../model/userModel');
-const { use } = require('../routes/userRoutes');
 
 //Função do controller que lista os usuários
 const getAllUsers = (req, res) => {
@@ -63,9 +62,26 @@ const deleteUser = (req, res) => {
     }
 }
 
+//metodo do controlador para eitar um usuario
+const updateUser = (req, res) => {
+
+    //1° passo: pegar os dados que foram enviados pelo Body (corpo) da requisição
+    const {id, name, email} = req.body
+
+    //visualizar se foi enviado o ID
+
+    if(!id){
+        return res.status(400).json({mensagem:'o id do ususario é obrigatorio'})
+    }else{
+        const dataUser = userModel.updateUser({id, name, email})
+        res.status(200).json(dataUser)
+    }
+}
+
 module.exports = {
     getAllUsers,
     getUserById,
     createUser,
-    deleteUser
+    deleteUser,
+    updateUser
 }

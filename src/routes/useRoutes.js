@@ -3,7 +3,8 @@ const express = require('express')
 
 //2º Passo - criar um router e importar o controller de usuário
 const router = express.Router();
-const userController = require('../controller/userController');
+
+const userController = require('../controller/useController');
 
 
 // 3º Passo - Criar as Rotas  dos Usuários
@@ -19,6 +20,10 @@ router.post('/', userController.createUser);
 
 //Criando uma rota que ira Deletar um usuário
 //localhost:8000/api/user/1
-router.delete('/:id', userController.deleteUser)
+router.delete('/:id', userController.deleteUser);
+
+//criando uma rota para atualizar um usuario
+//localhost:8000/api/user/
+router.put('/', userController.updateUser);
 
 module.exports = router;

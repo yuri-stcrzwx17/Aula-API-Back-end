@@ -46,9 +46,24 @@ const deleteUser = (id) => {
     return null;
 }
 
+//função para atualizar dados de um usuario
+
+const updateUser = (dataUser) => {
+    
+    //Descobrir o index do elemento para excluir
+    const index = users.findIndex(user => user.id === dataUser.id)
+
+    //alterando os dados 
+    users[index] = dataUser
+
+    return users[index]
+
+}
+
 module.exports = {
     findAll,
     findById,
     create,
-    deleteUser
+    deleteUser,
+    updateUser
 }

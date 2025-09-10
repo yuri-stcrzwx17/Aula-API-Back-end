@@ -3,7 +3,7 @@
 const express = require('express');
 
 //Importar o arquivo das rotas do usuário
-const userRoutes = require('./src/routes/userRoutes');
+const userRoutes = require('./src/routes/useRoutes');
 
 //Criar uma aplicação express
 const app = express();
